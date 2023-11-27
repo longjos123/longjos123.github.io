@@ -1,0 +1,64 @@
+body {
+    background: #39BEF8;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    max-width: 900px;
+    height: 60%;
+    border: 3px solid #FFFFFF;
+    border-radius: 15px;
+    background-color: #000000B5;
+    justify-content: center;
+}
+
+.box-content button {
+    height: 26px;
+    width: 70px;
+    border-radius: 20px;
+    color: white;
+    background-color: #2DC071;
+    border: 1px solid #2DC071;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.box-content p {
+    font-size: 25px;
+    font-family: monospace;
+    color: white;
+}
+
+.box-content p span {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.figma a {
+    font-size: 25px;
+    font-weight: bold;
+    color: #39BEF8;
+    letter-spacing: 1px;
+}
+
+.group-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 67px;
+    border: 2px solid white;
+    border-radius: 35px;
+    background: white;
+    gap: 15px;
+}
