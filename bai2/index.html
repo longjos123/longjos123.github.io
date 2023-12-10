@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #clock {
+            font-size: 36px;
+        }
+    </style>
+    <script>
+        function updateClock() {
+            var now = new Date();
+
+            // Hiển thị giờ, phút, giây
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            var timeString = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+            document.getElementById('clock').textContent = timeString;
+
+            // Hiển thị theo múi giờ của các nước
+            var vietnamTime = formatTime(now, 7);
+            var usaTime = formatTime(now, -5);
+            var russiaTime = formatTime(now, 3);
+            var japanTime = formatTime(now, 9);
+            var australiaTime = formatTime(now, 10);
+
+            document.getElementById('vietnam').textContent = "Việt Nam: " + vietnamTime;
+            document.getElementById('usa').textContent = "Mỹ: " + usaTime;
+            document.getElementById('russia').textContent = "Nga: " + russiaTime;
+            document.getElementById('japan').textContent = "Nhật Bản: " + japanTime;
+            document.getElementById('australia').textContent = "Úc: " + australiaTime;
+        }
+
+        function formatTime(date, offset) {
+            var utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+            var localTime = new Date(utc + (3600000 * offset));
+            return pad(localTime.getHours()) + ":" + pad(localTime.getMinutes()) + ":" + pad(localTime.getSeconds());
+        }
+
+        function pad(number) {
+            if (number < 10) {
+                return "0" + number;
+            }
+            return number;
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="vietnam"></div>
+    <div id="usa"></div>
+    <div id="russia"></div>
+    <div id="japan"></div>
+    <div id="australia"></div>
+</body>
+</html>

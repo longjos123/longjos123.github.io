@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const table = document.getElementById('pokemonTable');
+
+            // Gửi yêu cầu GET đến API
+            fetch('https://pokeapi.co/api/v2/pokemon')
+                .then(response => response.json())
+                .then(data => {
+                    // Xử lý dữ liệu và tạo bảng
+                    createTable(table, data.results);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+
+        function createTable(table, pokemonList) {
+            const headerRow = table.insertRow(0);
+            const headerCell1 = headerRow.insertCell(0);
+            const headerCell2 = headerRow.insertCell(1);
+            headerCell1.innerHTML = '<b>ID</b>';
+            headerCell2.innerHTML = '<b>Name</b>';
+
+            pokemonList.forEach((pokemon, index) => {
+                const row = table.insertRow(index + 1);
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = index + 1;
+                cell2.textContent = pokemon.name;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Pokémon List</h2>
+    <table id="pokemonTable"></table>
+</body>
+</html>

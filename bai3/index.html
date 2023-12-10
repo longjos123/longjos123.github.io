@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #clock {
+            font-size: 36px;
+        }
+    </style>
+    <script>
+        const updateClock = () => {
+            const now = new Date();
+
+            // Hiển thị giờ, phút, giây
+            const timeString = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+            document.getElementById('clock').textContent = timeString;
+
+            // Hiển thị theo múi giờ của các nước
+            const vietnamTime = formatTime(now, 7);
+            const usaTime = formatTime(now, -5);
+            const russiaTime = formatTime(now, 3);
+            const japanTime = formatTime(now, 9);
+            const australiaTime = formatTime(now, 10);
+
+            document.getElementById('vietnam').textContent = `Việt Nam: ${vietnamTime}`;
+            document.getElementById('usa').textContent = `Mỹ: ${usaTime}`;
+            document.getElementById('russia').textContent = `Nga: ${russiaTime}`;
+            document.getElementById('japan').textContent = `Nhật Bản: ${japanTime}`;
+            document.getElementById('australia').textContent = `Úc: ${australiaTime}`;
+        };
+
+        const formatTime = (date, offset) => {
+            const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+            const localTime = new Date(utc + (3600000 * offset));
+            return `${pad(localTime.getHours())}:${pad(localTime.getMinutes())}:${pad(localTime.getSeconds())}`;
+        };
+
+        const pad = (number) => (number < 10 ? `0${number}` : number);
+
+        setInterval(updateClock, 1000);
+    </script>
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="vietnam"></div>
+    <div id="usa"></div>
+    <div id="russia"></div>
+    <div id="japan"></div>
+    <div id="australia"></div>
+</body>
+</html>
